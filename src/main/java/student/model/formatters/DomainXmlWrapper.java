@@ -33,4 +33,18 @@ public final class DomainXmlWrapper {
     public DomainXmlWrapper(Collection<DNRecord> records) {
         this.domain = records;
     }
+    /**
+     * Get the records collection encapsulated in this DomainXmlWrapper object.
+     * @return the records collection encapsulated in this DomainXmlWrapper.
+     */
+    public Collection<DNRecord> getDomain() {
+        return domain;
+    }
+    /**
+     * Sets the records collection to encapsulated in this DomainXmlWrapper object.
+     * @param domain The new records collection to be encapsulated.
+     */
+    public void setDomain(Collection<DNRecord> domain) {
+        this.domain = domain;
+    }
 }

@@ -53,7 +53,7 @@ public interface DomainNameModel {
      */
     static void writeRecords(List<DNRecord> records, Formats format, OutputStream out) {
         DataFormatter.write(records, format, out);
-    }
+    } 
 
 
     /**
