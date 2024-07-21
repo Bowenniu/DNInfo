@@ -115,8 +115,9 @@ public final class DataFormatter {
                 // hostname of the record, IP address of the record, City of the record.
                 // Region of the record, Country of the record, Postal code of the record.
                 // Latitude coordinate of the record, Longitude coordinate of the record.
-                writer.printf("%s,%s,%s,%s,%s,%s,%f,%f%n", record.hostname(), record.ip(), record.city(), record.region(), 
-                    record.country(), record.postal(), record.latitude(), record.longitude());
+                writer.printf("%s,%s,%s,%s,%s,%s,%f,%f%n", record.hostname(), record.ip(),
+                record.city(), record.region(), record.country(), record.postal(), record.latitude(),
+                record.longitude());
             }
         }
     }

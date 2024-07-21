@@ -21,9 +21,10 @@ public final class DNInfoApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) { // Main function
-        ArgsController controller = new ArgsController(); // create a new ArgsController in order to deal with the user input.
+        // create a new ArgsController in order to deal with the user input.
+        ArgsController controller = new ArgsController(); 
         // If the length of the command line is greater than 0 (which means there are arguments present).
-        if(args.length == 0) {
+        if (args.length == 0) {
             System.out.println("No arguments provided. Please provide at least one.");
             return;
         }
@@ -31,12 +32,12 @@ public final class DNInfoApp {
             String hostname = args[0];
             controller.setHostname(hostname);
             // Iterate through the remaining arguments
-            for(int i = 1; i < args.length; i++) {
+            for (int i = 1; i < args.length; i++) {
                 // Check the argument and set the corresponding property in the controller.
                 switch (args[i]) {
                     case "-f":
                         // Check if there is a format argument after -f
-                        if(i + 1 < args.length) {
+                        if (i + 1 < args.length) {
                             String format = args[i + 1];
                             controller.setFormat(format);
                             // Move to the next argument.
@@ -47,7 +48,7 @@ public final class DNInfoApp {
                         break;
                     case "-o":
                         // Check if there is an output path argument after -o.
-                        if(i + 1 < args.length) {
+                        if (i + 1 < args.length) {
                             String outputPath = args[i + 1];
                             controller.setOutputPath(outputPath);
                             // Move to the next argument.
@@ -66,8 +67,8 @@ public final class DNInfoApp {
                             System.err.println("No value provided for --data option.");
                         }
                         break;
-                    case"-h":
-                    case"--help":
+                    case "-h":
+                    case "--help":
                         // Display the help message and exit.
                         System.out.println(controller.getHelp());
                         return;

@@ -39,7 +39,7 @@ public class ArgsController {
         // Check if the provided format string is valid.
         Formats format = Formats.containsValues(formatStr);
         // If format is valid, set format, else, tell the user that it is unknown format.
-        if(format != null) {
+        if (format != null) {
             this.format = format;
         } else {
             System.err.println("Unknown format: " + formatStr);
@@ -54,7 +54,7 @@ public class ArgsController {
         try {
             // Set output stream to the output path file
             this.output = new FileOutputStream(outputPath);
-        } catch(IOException e) {
+        } catch (IOException e) {
             // If the setting path fails, print the message to tell the user the output path can not be set.
             System.err.println("Failed to set output path: " + outputPath);
             e.printStackTrace();
