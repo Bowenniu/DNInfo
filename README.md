@@ -4,15 +4,21 @@ Github Account name:
 
 Link to Assignment on Github: (copy and paste the link to your assignment repo here)
 
+https://github.com/Bowenniu/DNInfo.git
+
 How many hours did it take you to complete this assignment (estimate)?
+
+15
 
 Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what
 capacity.
 
+Non
 * one per row, add more if needed
   
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)
 
+Non
 * one row per resource
 
 

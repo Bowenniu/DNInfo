@@ -8,9 +8,63 @@ This document is meant to provide a tool for you to demonstrate the design proce
 
 Place your class diagram below. Make sure you check the file in the browser on github.com to make sure it is rendering correctly. If it is not, you will need to fix it. As a reminder, here is a link to tools that can help you create a class diagram: [Class Resources: Class Design Tools](https://github.com/CS5004-khoury-lionelle/Resources?tab=readme-ov-file#uml-design-tools)
 
-
-
-
+```mermaid
+---
+title: DNInfoApp Design
+---
+classDiagram
+    class DNInfoApp {
+        +main(String[] args)
+    }
+    class ArgsController {
+        -DomainNameModel model
+        -Formats format
+        -OutputStream output
+        -String hostname
+        -String dataFilePath
+        +setFormat(String formatStr)
+        +setOutputPath(String outputPath)
+        +setDataFilePath(String dataFilePath)
+        +processHostname(String hostname)
+        +getHelp() : String
+    }
+    class DomainNameModel {
+        +getRecords() : List<DNRecord>
+        +getRecord(String hostname) : DNRecord 
+        +writeRecords(List<DNRecord> records, Formats format, OutputStream out)
+        +getInstance() : DomainNameModel
+        +getInstance(String database) : DomainNameModel
+    }
+    class DNRecord {
+        -String hostname
+        -String ip
+        -String city
+        -String region
+        -String country
+        -String postal code
+        -String latitude
+        -String longitude
+    } 
+    class DataFormatter {
+        +prettyPrint(Collection<DNR> records, OutputStream out)
+        +prettySingle(DNRecord record, PrintStream out)
+        +writeXmlData(Collection<DNRecord> records, OutputStream out)
+        +writeJsonData(Collection<DNRecord> records, OutputStream out)
+        +writeCSVData(Collection<DNRecord> records, OutputStream out)
+        +write(Collection<DNRecord> records, Formats format, OutputStream out)
+    }
+    class Formats {
+        <<emum>>
+        PRETTY
+        XML
+        JSON
+        CSV
+    }
+    class DomainXmlWrapper {
+        +wrap(List<DNRecord> records) : String
+        +unwrap(String xml) : List<DNRecord>
+    }
+```
 
 ## (INITIAL DESIGN): Tests to Write - Brainstorm
 
@@ -26,8 +80,9 @@ Write a test (in english) that you can picture for the class diagram you have cr
 
 You should feel free to number your brainstorm. 
 
-1. Test 1..
-2. Test 2..
+1. Test the controller if it can correctly putput the expected result 
+2. Test the output format as JSON
+3. Test if the function can display --help information
 
 
 
@@ -49,3 +104,6 @@ Go through your completed code, and update your class diagram to reflect the fin
 > The value of reflective writing has been highly researched and documented within computer science, from learning to information to showing higher salaries in the workplace. For this next part, we encourage you to take time, and truly focus on your retrospective.
 
 Take time to reflect on how your design has changed. Write in *prose* (i.e. do not bullet point your answers - it matters in how our brain processes the information). Make sure to include what were some major changes, and why you made them. What did you learn from this process? What would you do differently next time? What was the most challenging part of this process? For most students, it will be a paragraph or two. 
+
+Initially, my design was based on a broad and idealized structure, but as i delved deeper into coding and faced practical constrains, significant modifications became inevitable. One major change involved adjusting the DomainNameModel class to better integrate with the ArgsController and DataFormatter classes. Initially, the data handling in the DomainNameModel was designed in a simplistic manner, but as the need for different output formats became clearer, I realized a more flexible design was required. This led to the introduction of additional methods and an optimized class structure to support XML, JSON, and CSV formats. The other significant change occured in the handling of command-line arguments. My initial design had a rudimentary parameter processing mechanism that did not account for all edge cases and error scenarios. As I run the test, I realized the importance of robust argument validation and error handling, which prompted me to significantly improve the argument parsing logic.
+The most challenging part in the process was integrating the various components together while ensuring they collaborated seamlessly. Balancing the need for scalability, performance, and user input processing was complex and required careful consideration and frequent adjustments. Despite these challenges, this experience underscored the value of a flexible design approach and the importance of interative development in creating a robust and adaptable system.

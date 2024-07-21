@@ -22,7 +22,14 @@ public class ArgsController {
     private String hostname = "all"; // default to all
     /** The data file path. */
     private String dataFilePath = DomainNameModel.DATABASE;
-
+   
+    /**
+     * @param hostname the hostname that shall be look up to
+     */
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+    
     /**
      * Set the output format.
      * 

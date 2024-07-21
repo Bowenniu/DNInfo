@@ -23,9 +23,13 @@ public final class DNInfoApp {
     public static void main(String[] args) { // Main function
         ArgsController controller = new ArgsController(); // create a new ArgsController in order to deal with the user input.
         // If the length of the command line is greater than 0 (which means there are arguments present).
-        if(args.length > 0) {
+        if(args.length == 0) {
+            System.out.println("No arguments provided. Please provide at least one.");
+            return;
+        }
             // Here, assign the first argument to the hostname varaible.
             String hostname = args[0];
+            controller.setHostname(hostname);
             // Iterate through the remaining arguments
             for(int i = 1; i < args.length; i++) {
                 // Check the argument and set the corresponding property in the controller.
@@ -37,6 +41,8 @@ public final class DNInfoApp {
                             controller.setFormat(format);
                             // Move to the next argument.
                             i++;
+                        } else {
+                            System.err.println("No value provided for -f option.");
                         }
                         break;
                     case "-o":
@@ -46,6 +52,8 @@ public final class DNInfoApp {
                             controller.setOutputPath(outputPath);
                             // Move to the next argument.
                             i++;
+                        } else {
+                            System.out.println("No value provided for -o option.");
                         }
                         break;
                     case "--data":
@@ -54,6 +62,8 @@ public final class DNInfoApp {
                             String dataFilePath = args[i + 1];
                             controller.setDataFilePath(dataFilePath);
                             i++; // Move to the next argument
+                        } else {
+                            System.err.println("No value provided for --data option.");
                         }
                         break;
                     case"-h":
@@ -64,15 +74,11 @@ public final class DNInfoApp {
                     default:
                         // Display the error message for unknown argument and display help
                         System.err.println("Unknown argument: " + args[i]);
-                        System.err.println(controller.getHelp());
                         // Exit the program if an unknown argument is found.
                         return;
                     
                 }
             }
             controller.processHostname(hostname);
-        } else {
-            System.err.println("Usage: DNInfoapp [hostname|all] [-f json|xml|csv|pretty] [-o file path] [--data filepath] [-h | --help]");
-        }
-    }
+     }   
 }
